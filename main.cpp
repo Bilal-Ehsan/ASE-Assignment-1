@@ -25,8 +25,19 @@ int main(int argc, char* argv[]) {
     if (bricks.find(outputSequence.back()) == bricks.end()) {
       break;
     } else {
-      auto match = bricks.find(outputSequence.back());
-      outputSequence.emplace_back(match->second);
+      auto back = bricks.find(outputSequence.back());
+      outputSequence.emplace_back(back->second);
+    }
+  }
+
+  // NOTE: Remove nested loop!!!
+  // Append to front of sequence
+  for (const auto& i : bricks) {
+    auto front = bricks.find(outputSequence.front());
+
+    for (const auto& i : bricks) {
+      if (i.second == front->first)
+        outputSequence.emplace_front(i.first);
     }
   }
 
