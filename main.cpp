@@ -6,11 +6,14 @@
 #include <list>
 #include <unordered_map>
 
-void loadData(std::string, std::unordered_map<std::string, std::string>&);
-void tokensieInput(std::string&, char, std::unordered_map<std::string, std::string>&);
+using northSide = std::string;
+using southSide = std::string;
+
+void loadData(std::string, std::unordered_map<northSide, southSide>&);
+void tokensieInput(std::string&, char, std::unordered_map<northSide, southSide>&);
 
 int main(int argc, char* argv[]) {
-  std::unordered_map<std::string, std::string> bricks;
+  std::unordered_map<northSide, southSide> bricks;
   std::list<std::string> outputSequence;
 
   loadData(argv[1], bricks);
@@ -40,7 +43,7 @@ int main(int argc, char* argv[]) {
   return 0;
 }
 
-void loadData(std::string path, std::unordered_map<std::string, std::string>& bricks) {
+void loadData(std::string path, std::unordered_map<northSide, southSide>& bricks) {
   std::ifstream ifs;
   ifs.open(path);
 
@@ -61,7 +64,7 @@ void loadData(std::string path, std::unordered_map<std::string, std::string>& br
   ifs.close();
 }
 
-void tokensieInput(std::string& str, char delim, std::unordered_map<std::string, std::string>& bricks) {
+void tokensieInput(std::string& str, char delim, std::unordered_map<northSide, southSide>& bricks) {
   std::stringstream ss(str);
   std::vector<std::string> brick = {};
 
