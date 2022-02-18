@@ -6,18 +6,17 @@
 #include <list>
 #include <unordered_map>
 #include <map>
+#include <algorithm>
 
 using northSide = std::string;
 using southSide = std::string;
 
 void loadData(std::string, std::unordered_map<northSide, southSide>&);
 void tokeniseInput(std::string&, char, std::unordered_map<northSide, southSide>&);
-// void loadData(std::string, std::map<northSide, southSide>&);
-// void tokeniseInput(std::string&, char, std::map<northSide, southSide>&);
+std::unordered_map<northSide, southSide> inverseMap(std::unordered_map<northSide, southSide>&);;
 
 int main(int argc, char* argv[]) {
   std::unordered_map<northSide, southSide> bricks;
-  // std::map<northSide, southSide> bricks;
   std::list<std::string> outputSequence;
 
   loadData(argv[1], bricks);
@@ -37,14 +36,16 @@ int main(int argc, char* argv[]) {
     }
   }
 
-  for (const auto& brick : bricks) {
-    auto front = bricks.find(outputSequence.front());
-    
-    for (const auto& brick : bricks) {
-      if (brick.second == front->first) {
-        outputSequence.emplace_front(brick.first);
-      } 
-    }
+  std::unordered_map<southSide, northSide> inversed = inverseMap(bricks);
+
+  for (const auto& brick : inversed) {
+    auto front = inversed.find(outputSequence.front());
+
+    if (front == bricks.end()) {
+      break;
+    } else {
+      outputSequence.emplace_front(front->second);
+    } 
   }
 
   for (const auto& symbol : outputSequence)
@@ -54,7 +55,6 @@ int main(int argc, char* argv[]) {
 }
 
 void loadData(std::string path, std::unordered_map<northSide, southSide>& bricks) {
-// void loadData(std::string path, std::map<northSide, southSide>& bricks) {
   std::ifstream ifs;
   ifs.open(path);
 
@@ -76,7 +76,6 @@ void loadData(std::string path, std::unordered_map<northSide, southSide>& bricks
 }
 
 void tokeniseInput(std::string& str, char delim, std::unordered_map<northSide, southSide>& bricks) {
-// void tokeniseInput(std::string& str, char delim, std::map<northSide, southSide>& bricks) {
   std::stringstream ss(str);
   std::vector<std::string> brick = {};
 
@@ -86,4 +85,14 @@ void tokeniseInput(std::string& str, char delim, std::unordered_map<northSide, s
   std::string northSide = brick[0];
   std::string southSide = brick[1];
   bricks.emplace(northSide, southSide);
+}
+
+std::unordered_map<northSide, southSide> inverseMap(std::unordered_map<northSide, southSide>& map) {
+  std::unordered_map<northSide, southSide> inv;
+
+  std::for_each(map.begin(), map.end(), [&inv](const std::pair<southSide, northSide>& p) {
+    inv.emplace(p.second, p.first);
+  });
+
+  return inv;
 }
