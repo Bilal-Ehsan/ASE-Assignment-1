@@ -21,7 +21,17 @@ int main(int argc, char* argv[]) {
   outputSequence.emplace_back(startingBrick->second);
 
   // Append to back of sequence
-  
+  for (const auto& i : bricks) {
+    if (bricks.find(outputSequence.back()) == bricks.end()) {
+      break;
+    } else {
+      auto match = bricks.find(outputSequence.back());
+      outputSequence.emplace_back(match->second);
+    }
+  }
+
+  for (const auto& i : outputSequence)
+    std::cout << i << std::endl;
 
   return 0;
 }
@@ -51,9 +61,8 @@ void tokensieInput(std::string& str, char delim, std::unordered_map<std::string,
   std::stringstream ss(str);
   std::vector<std::string> brick = {};
 
-  while (std::getline(ss, str, delim)) {
+  while (std::getline(ss, str, delim))
     brick.emplace_back(str);
-  }
 
   std::string northSide = brick[0];
   std::string southSide = brick[1];
