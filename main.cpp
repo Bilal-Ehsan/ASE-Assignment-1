@@ -20,29 +20,22 @@ int main(int argc, char* argv[]) {
   outputSequence.emplace_back(startingBrick->first);
   outputSequence.emplace_back(startingBrick->second);
 
-  // Append to back of sequence
-  for (const auto& i : bricks) {
+  for (const auto& brick : bricks) {
     if (bricks.find(outputSequence.back()) == bricks.end()) {
-      break;
+      auto front = bricks.find(outputSequence.front());
+
+      for (const auto& brick : bricks) {
+        if (brick.second == front->first)
+          outputSequence.emplace_front(brick.first);
+      }
     } else {
       auto back = bricks.find(outputSequence.back());
       outputSequence.emplace_back(back->second);
     }
   }
 
-  // NOTE: Remove nested loop!!!
-  // Append to front of sequence
-  for (const auto& i : bricks) {
-    auto front = bricks.find(outputSequence.front());
-
-    for (const auto& i : bricks) {
-      if (i.second == front->first)
-        outputSequence.emplace_front(i.first);
-    }
-  }
-
-  for (const auto& i : outputSequence)
-    std::cout << i << std::endl;
+  for (const auto& symbol : outputSequence)
+    std::cout << symbol << std::endl;
 
   return 0;
 }
