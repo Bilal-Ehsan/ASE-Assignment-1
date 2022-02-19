@@ -8,15 +8,17 @@
 
 int main(int argc, char* argv[]) {
   std::unordered_map<northSide, southSide> bricks = loadData(argv[1]);
+  // std::map<northSide, southSide> bricks = loadData(argv[1]);
   std::list<std::string> outputSequence = createSequence(bricks);
   displaySequence(outputSequence);
 
   return 0;
 }
 
-std::unordered_map<northSide, southSide> loadData(std::string path) {
+std::unordered_map<northSide, southSide> loadData(const std::string path) {
   std::unordered_map<northSide, southSide> bricks;
-
+// std::map<northSide, southSide> loadData(std::string path) {
+//   std::map<northSide, southSide> bricks;
   std::ifstream ifs;
   ifs.open(path);
 
@@ -39,6 +41,7 @@ std::unordered_map<northSide, southSide> loadData(std::string path) {
 }
 
 void tokeniseInput(std::string& str, char delim, std::unordered_map<northSide, southSide>& bricks) {
+// void tokeniseInput(std::string& str, char delim, std::map<northSide, southSide>& bricks) {
   std::stringstream ss(str);
   std::vector<std::string> brick;
 
@@ -51,6 +54,7 @@ void tokeniseInput(std::string& str, char delim, std::unordered_map<northSide, s
 }
 
 std::list<std::string> createSequence(std::unordered_map<northSide, southSide>& bricks) {
+// std::list<std::string> createSequence(std::map<northSide, southSide>& bricks) {
   std::list<std::string> outputSequence;
   const auto startingBrick = bricks.begin();
 
@@ -68,11 +72,12 @@ std::list<std::string> createSequence(std::unordered_map<northSide, southSide>& 
   }
 
   std::unordered_map<southSide, northSide> inversed = inverseMap(bricks);
+  // std::map<southSide, northSide> inversed = inverseMap(bricks);
 
   for (const auto& brick : inversed) {
     auto front = inversed.find(outputSequence.front());
 
-    if (front == bricks.end()) {
+    if (front == inversed.end()) {
       break;
     } else {
       outputSequence.emplace_front(front->second);
@@ -84,6 +89,8 @@ std::list<std::string> createSequence(std::unordered_map<northSide, southSide>& 
 
 std::unordered_map<northSide, southSide> inverseMap(std::unordered_map<northSide, southSide>& map) {
   std::unordered_map<northSide, southSide> inv;
+// std::map<northSide, southSide> inverseMap(std::map<northSide, southSide>& map) {
+//   std::map<northSide, southSide> inv;
 
   std::for_each(map.begin(), map.end(), [&inv](const std::pair<southSide, northSide>& p) {
     inv.emplace(p.second, p.first);
