@@ -1,10 +1,9 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef SOLUTION_1
+#define SOLUTION_1
 
 #include <unordered_map>
-#include <map>
-#include <string>
 #include <list>
+#include <string>
 
 using northSide = std::string;
 using southSide = std::string;
