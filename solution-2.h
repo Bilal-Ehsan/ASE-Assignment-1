@@ -1,5 +1,5 @@
-#ifndef SOLUTION_2
-#define SOLUTION_2
+#ifndef SOLUTION_TWO_H
+#define SOLUTION_TWO_H
 
 #include <string>
 #include <map>

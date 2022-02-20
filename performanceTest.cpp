@@ -1,32 +1,25 @@
-#include <iostream>
-#include <chrono>
+#include "performanceTest.h"
+#include "Timer.h"
+#include "solution-1.h"
+#include "solution-2.h"
 
-#include "main.h"
-
-struct Timer {
-  std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
-  std::chrono::duration<float> duration;
-
-  Timer() {
-    start = std::chrono::high_resolution_clock::now();
-  }
-
-  ~Timer() {
-    end = std::chrono::high_resolution_clock::now();
-    duration = end - start;
-
-    float ms = duration.count() * 1000.0f;
-    std::cout << "\nTimer took " << ms << "ms " << std::endl;
-  }
-};
-
-void func() {
-  Timer timer;
-
-  // ...
+int main(int argc, char* argv[]) {
+  firstImplementation(argv[1]);
+  // secondImplementation(argv[1]);
+  
+  return 0;
 }
 
-int main() {
-  func();
-  return 0;
+void firstImplementation(std::string path) {
+  Timer timer;
+
+  std::unordered_map<northSide, southSide> bricks = solution_1::loadData(path);
+  std::list<std::string> outputSequence = solution_1::createSequence(bricks);
+}
+
+void secondImplementation(std::string path) {
+  Timer timer;
+
+  std::map<northSide, southSide> bricks = solution_2::loadData(path);
+  std::list<std::string> outputSequence = solution_2::createSequence(bricks);
 }

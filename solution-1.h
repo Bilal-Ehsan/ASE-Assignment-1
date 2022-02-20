@@ -1,5 +1,5 @@
-#ifndef SOLUTION_1
-#define SOLUTION_1
+#ifndef SOLUTION_ONE_H
+#define SOLUTION_ONE_H
 
 #include <unordered_map>
 #include <list>

@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef PERFORMANCE_TEST_H
+#define PERFORMANCE_TEST_H
 
 #include <string>
 
