@@ -6,7 +6,7 @@
 
 #include "solution-2.h"
 
-std::map<northSide, southSide> loadData(const std::string path) {
+std::map<northSide, southSide> solution_2::loadData(const std::string path) {
   std::map<northSide, southSide> bricks;
   std::ifstream ifs;
   ifs.open(path);
@@ -29,7 +29,7 @@ std::map<northSide, southSide> loadData(const std::string path) {
   return bricks;
 }
 
-void tokeniseInput(std::string& str, char delim, std::map<northSide, southSide>& bricks) {
+void solution_2::tokeniseInput(std::string& str, char delim, std::map<northSide, southSide>& bricks) {
   std::stringstream ss(str);
   std::vector<std::string> brick;
 
@@ -41,7 +41,7 @@ void tokeniseInput(std::string& str, char delim, std::map<northSide, southSide>&
   bricks.emplace(northSide, southSide);
 }
 
-std::list<std::string> createSequence(std::map<northSide, southSide>& bricks) {
+std::list<std::string> solution_2::createSequence(std::map<northSide, southSide>& bricks) {
   std::list<std::string> outputSequence;
   const auto startingBrick = bricks.begin();
 
@@ -73,7 +73,7 @@ std::list<std::string> createSequence(std::map<northSide, southSide>& bricks) {
   return outputSequence;
 }
 
-std::map<northSide, southSide> inverseMap(std::map<northSide, southSide>& map) {
+std::map<northSide, southSide> solution_2::inverseMap(std::map<northSide, southSide>& map) {
   std::map<northSide, southSide> inv;
 
   std::for_each(map.begin(), map.end(), [&inv](const std::pair<southSide, northSide>& p) {
@@ -83,7 +83,7 @@ std::map<northSide, southSide> inverseMap(std::map<northSide, southSide>& map) {
   return inv;
 }
 
-void displaySequence(std::list<std::string>& seq) {
+void solution_2::displaySequence(std::list<std::string>& seq) {
   for (const auto& symbol : seq)
     std::cout << symbol << std::endl;
 }

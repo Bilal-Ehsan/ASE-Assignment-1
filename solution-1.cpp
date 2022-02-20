@@ -6,7 +6,7 @@
 
 #include "solution-1.h"
 
-std::unordered_map<northSide, southSide> loadData(const std::string path) {
+std::unordered_map<northSide, southSide> solution_1::loadData(const std::string path) {
   std::unordered_map<northSide, southSide> bricks;
   std::ifstream ifs;
   ifs.open(path);
@@ -29,7 +29,7 @@ std::unordered_map<northSide, southSide> loadData(const std::string path) {
   return bricks;
 }
 
-void tokeniseInput(std::string& str, char delim, std::unordered_map<northSide, southSide>& bricks) {
+void solution_1::tokeniseInput(std::string& str, char delim, std::unordered_map<northSide, southSide>& bricks) {
   std::stringstream ss(str);
   std::vector<std::string> brick;
 
@@ -41,7 +41,7 @@ void tokeniseInput(std::string& str, char delim, std::unordered_map<northSide, s
   bricks.emplace(northSide, southSide);
 }
 
-std::list<std::string> createSequence(std::unordered_map<northSide, southSide>& bricks) {
+std::list<std::string> solution_1::createSequence(std::unordered_map<northSide, southSide>& bricks) {
   std::list<std::string> outputSequence;
   const auto startingBrick = bricks.begin();
 
@@ -73,7 +73,7 @@ std::list<std::string> createSequence(std::unordered_map<northSide, southSide>& 
   return outputSequence;
 }
 
-std::unordered_map<northSide, southSide> inverseMap(std::unordered_map<northSide, southSide>& map) {
+std::unordered_map<northSide, southSide> solution_1::inverseMap(std::unordered_map<northSide, southSide>& map) {
   std::unordered_map<northSide, southSide> inv;
 
   std::for_each(map.begin(), map.end(), [&inv](const std::pair<southSide, northSide>& p) {
@@ -83,7 +83,7 @@ std::unordered_map<northSide, southSide> inverseMap(std::unordered_map<northSide
   return inv;
 }
 
-void displaySequence(std::list<std::string>& seq) {
+void solution_1::displaySequence(std::list<std::string>& seq) {
   for (const auto& symbol : seq)
     std::cout << symbol << std::endl;
 }
