@@ -1,7 +1,7 @@
-#include "performanceTest.h"
-#include "Timer.h"
-#include "solution-1.h"
-#include "solution-2.h"
+#include "../headers/performanceTest.h"
+#include "../headers/Timer.h"
+#include "../headers/solution-1.h"
+#include "../headers/solution-2.h"
 
 int main(int argc, char* argv[]) {
   firstImplementation(argv[1]);
