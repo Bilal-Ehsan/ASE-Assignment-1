@@ -3,7 +3,7 @@
 
 #include <string>
 
-void firstImplementation(std::string path);
-void secondImplementation(std::string path);
+void firstImplementation(std::string);
+void secondImplementation(std::string);
 
 #endif
