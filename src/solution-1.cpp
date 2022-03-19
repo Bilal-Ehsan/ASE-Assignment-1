@@ -73,10 +73,10 @@ std::list<std::string> solution_1::createSequence(std::unordered_map<northSide, 
   return outputSequence;
 }
 
-std::unordered_map<northSide, southSide> solution_1::inverseMap(std::unordered_map<northSide, southSide>& map) {
-  std::unordered_map<northSide, southSide> inv;
+std::unordered_map<southSide, northSide> solution_1::inverseMap(std::unordered_map<northSide, southSide>& map) {
+  std::unordered_map<southSide, northSide> inv;
 
-  std::for_each(map.begin(), map.end(), [&inv](const std::pair<southSide, northSide>& p) {
+  std::for_each(map.begin(), map.end(), [&inv](const std::pair<northSide, southSide>& p) {
     inv.emplace(p.second, p.first);
   });
 
